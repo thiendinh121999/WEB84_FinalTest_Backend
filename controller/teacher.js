@@ -9,8 +9,8 @@ const teacherControllers = {
         try {
             const { page, limit } = req.query;
 
-            const pageSize = parseInt(limit) || 100;
-            const pageNumber = parseInt(page) || 1; //current page
+            const pageSize = parseInt(limit) 
+            const pageNumber = parseInt(page) 
 
             const totalItems = await teacherModel.countDocuments();
             // const totalPages = Math.ceil(totalItems / pageSize);
@@ -20,7 +20,9 @@ const teacherControllers = {
             console.log(teacherData)
             res.status(200).send({
                 message: "Success!",
-                data: teacherData
+                data: teacherData,
+                total: totalItems,
+
             })
            
         } catch (error) {
@@ -37,7 +39,7 @@ const teacherControllers = {
                 isActive: req.body.isActive,
                 code: crypto.randomBytes(4).toString('hex'),
                 startDate: new Date(),
-                teacherPositionsId: req.body.teacherPositionId, 
+                teacherPositionsId: req.body.teacherPositionsId, 
                 degrees: req.body.degrees,
                     type: req.body.degreetype,
                     school: req.body.school,
